@@ -1,0 +1,66 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    # Enqueue: Insert an element at the rear
+    def enqueue(self, data):
+        new_node = Node(data)
+        if self.rear is None:  # If the queue is empty
+            self.front = self.rear = new_node
+            return
+        self.rear.next = new_node  # Link the new node at the end of the queue
+        self.rear = new_node       # Update rear to the new node
+
+    # Dequeue: Remove an element from the front
+    def dequeue(self):
+        if self.front is None:  # If the queue is empty
+            print("Queue is empty")
+            return None
+        temp = self.front
+        self.front = self.front.next  # Move front to the next node
+        if self.front is None:  # If the queue becomes empty after dequeue
+            self.rear = None
+        return temp.data  # Return the data of the removed node
+
+    # Peek: View the element at the front
+    def peek(self):
+        if self.front is None:
+            print("Queue is empty")
+            return None
+        return self.front.data
+
+    # Check if the queue is empty
+    def is_empty(self):
+        return self.front is None
+
+    # Display the queue
+    def display(self):
+        if self.front is None:
+            print("Queue is empty")
+            return
+        current = self.front
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+# Example Usage:
+queue = Queue()
+queue.enqueue(10)
+queue.enqueue(20)
+queue.enqueue(30)
+
+queue.display()  # Output: 10 -> 20 -> 30 -> None
+
+print(f"Dequeued: {queue.dequeue()}")  # Output: Dequeued: 10
+queue.display()  # Output: 20 -> 30 -> None
+
+print(f"Peek: {queue.peek()}")  # Output: Peek: 20
+
+print(f"Is queue empty? {queue.is_empty()}")  # Output: False
