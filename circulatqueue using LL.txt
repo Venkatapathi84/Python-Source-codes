@@ -1,0 +1,81 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularQueue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    # Check if the queue is empty
+    def is_empty(self):
+        return self.front is None
+
+    # Enqueue operation (Insert element at the rear)
+    def enqueue(self, data):
+        new_node = Node(data)
+
+        if self.is_empty():
+            self.front = self.rear = new_node
+            self.rear.next = self.front  # Circular connection
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+            self.rear.next = self.front  # Maintain the circular connection
+
+    # Dequeue operation (Remove element from the front)
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue is empty")
+            return None
+
+        # If only one element is in the queue
+        if self.front == self.rear:
+            removed_data = self.front.data
+            self.front = self.rear = None
+            return removed_data
+
+        # More than one element in the queue
+        removed_data = self.front.data
+        self.front = self.front.next
+        self.rear.next = self.front  # Maintain the circular connection
+        return removed_data
+
+    # Peek operation (Get the front element without removing it)
+    def peek(self):
+        if self.is_empty():
+            print("Queue is empty")
+            return None
+        return self.front.data
+
+    # Print the queue
+    def display(self):
+        if self.is_empty():
+            print("Queue is empty")
+            return
+
+        current = self.front
+        while True:
+            print(current.data, end=" -> ")
+            current = current.next
+            if current == self.front:
+                break
+        print("(Back to Front)")
+
+# Example usage of the CircularQueue class
+cq = CircularQueue()
+cq.enqueue(10)
+cq.enqueue(20)
+cq.enqueue(30)
+cq.enqueue(40)
+
+cq.display()  # Should show the circular nature
+
+print("Dequeued:", cq.dequeue())  # Should remove 10
+cq.display()  # Queue after dequeue
+
+print("Peek:", cq.peek())  # Should show the front element
+
+cq.enqueue(50)
+cq.display()  # After enqueuing 50
