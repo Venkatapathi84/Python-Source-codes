@@ -1,0 +1,59 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    # Push: Insert at the top of the stack
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top  # Point new node to the current top
+        self.top = new_node       # Update top to the new node
+
+    # Pop: Remove the top element
+    def pop(self):
+        if self.top is None:
+            print("Stack is empty")
+            return None
+        popped_node = self.top
+        self.top = self.top.next  # Move top to the next node
+        return popped_node.data
+
+    # Peek: Return the top element
+    def peek(self):
+        if self.top is None:
+            print("Stack is empty")
+            return None
+        return self.top.data
+
+    # is_empty: Check if the stack is empty
+    def is_empty(self):
+        return self.top is None
+
+    # Display the stack
+    def display(self):
+        if self.top is None:
+            print("Stack is empty")
+            return
+        current = self.top
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+# Example Usage:
+stack = Stack()
+stack.push(5)
+stack.push(10)
+stack.push(15)
+
+stack.display()  # Output: 15 -> 10 -> 5 -> None
+
+print(f"Popped: {stack.pop()}")  # Output: Popped: 15
+stack.display()  # Output: 10 -> 5 -> None
+
+print(f"Peek: {stack.peek()}")  # Output: Peek: 10
+print(f"Is stack empty? {stack.is_empty()}")  # Output: False
