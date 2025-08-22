@@ -1,0 +1,21 @@
+import skfuzzy as fuzz
+import numpy as np
+
+# Universe of discourse: age from 0 to 100
+age = np.arange(0, 101, 1)
+
+# Define fuzzy sets
+young = fuzz.trimf(age, [0, 0, 40])     # Young up to ~40
+middle = fuzz.trimf(age, [30, 50, 70])  # Middle-aged 30–70
+old = fuzz.trimf(age, [60, 100, 100])   # Old from ~60+
+
+# Example: check membership of age = 35
+age_value = 35
+young_degree = fuzz.interp_membership(age, young, age_value)
+middle_degree = fuzz.interp_membership(age, middle, age_value)
+old_degree = fuzz.interp_membership(age, old, age_value)
+
+print(f"At age {age_value}:")
+print(f"  Young: {young_degree:.2f}")
+print(f"  Middle-aged: {middle_degree:.2f}")
+print(f"  Old: {old_degree:.2f}")
