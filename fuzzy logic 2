@@ -33,5 +33,18 @@ fan.compute()
 print(f"Temperature: 30°C -> Fan Speed: {fan.output['fan_speed']:.2f}%")
 
 
+
+
 output
 Temperature: 30°C -> Fan Speed: 70.00%
+
+
+Concepts Used
+
+Fuzzy Sets: 'cold', 'warm', 'hot' temperatures.
+
+Fuzzy Rules: IF temperature is hot THEN fan speed is high.
+
+Inference Engine: Applies the rules.
+
+Defuzzification: Converts fuzzy output to a crisp value.
