@@ -1,0 +1,5 @@
+fuzzy packages
+pip isntall scipy
+pip install numpy
+pip isntall networkx
+pip install scikit-fuzzy 
