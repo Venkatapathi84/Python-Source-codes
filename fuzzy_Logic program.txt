@@ -1,0 +1,43 @@
+Fuzzy Logic Program — “Fan Speed Control Based on Temperature”
+
+We will:
+
+Use fuzzy logic to determine fan speed based on temperature.
+
+Define fuzzy sets: "Cool", "Warm", "Hot".
+
+Use simple if-else logic to simulate fuzzy rules.
+
+Python Code:
+# Simple Fuzzy Logic Program: Fan Speed Control
+
+def temperature_to_fan_speed(temp):
+    if temp <= 20:
+        return "Low Speed"        # Cool
+    elif 20 < temp <= 30:
+        return "Medium Speed"     # Warm
+    else:
+        return "High Speed"       # Hot
+
+# Test temperatures
+temperatures = [15, 22, 28, 35]
+
+print("Fuzzy Logic: Fan Speed Control\n")
+for t in temperatures:
+    result = temperature_to_fan_speed(t)
+    print(f"Temperature: {t}°C => Fan Speed: {result}")
+
+✅ Output:
+Fuzzy Logic: Fan Speed Control
+
+Temperature: 15°C => Fan Speed: Low Speed
+Temperature: 22°C => Fan Speed: Medium Speed
+Temperature: 28°C => Fan Speed: Medium Speed
+Temperature: 35°C => Fan Speed: High Speed
+
+Want to Add Real Fuzzy Logic?
+
+You can use the scikit-fuzzy library (optional) for real fuzzy inference systems:
+
+pip install scikit-fuzzy
+
