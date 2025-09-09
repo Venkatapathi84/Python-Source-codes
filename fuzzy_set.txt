@@ -1,0 +1,17 @@
+# Define fuzzy membership function for "Young Age"
+def young_membership(age):
+    if age <= 20:
+        return 1.0
+    elif 20 < age <= 30:
+        return (30 - age) / 10
+    else:
+        return 0.0
+
+# Test data (some sample ages)
+ages = [10, 18, 22, 25, 30, 35, 50]
+
+# Display fuzzy set
+print("Fuzzy Set: Young Age")
+for age in ages:
+    membership = young_membership(age)
+    print(f"Age {age}: Membership = {membership:.2f}")
