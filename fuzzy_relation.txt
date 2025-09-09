@@ -1,0 +1,37 @@
+# Example: Fuzzy Relation in Python
+
+# Define two sets: X = Cities, Y = Distances
+X = ["CityA", "CityB", "CityC"]
+Y = ["Near", "Far"]
+
+# Define fuzzy relation as a dictionary
+# Values are membership degrees between 0 and 1
+fuzzy_relation = {
+    ("CityA", "Near"): 1.0,
+    ("CityA", "Far"): 0.0,
+    ("CityB", "Near"): 0.6,
+    ("CityB", "Far"): 0.4,
+    ("CityC", "Near"): 0.2,
+    ("CityC", "Far"): 0.8,
+}
+
+# Print fuzzy relation matrix
+print("Fuzzy Relation Matrix (Cities × Distance):\n")
+print("       Near   Far")
+for city in X:
+    row = []
+    for dist in Y:
+        row.append(f"{fuzzy_relation[(city, dist)]:.2f}")
+    print(f"{city:5}   {row[0]}   {row[1]}")
+
+
+
+
+This fuzzy relation shows how close each city is:
+
+CityA is fully "Near" (1.0) and not "Far" (0.0)
+
+CityB is moderately near (0.6) and somewhat far (0.4)
+
+CityC is more "Far" (0.8) than "Near" (0.2)
+
